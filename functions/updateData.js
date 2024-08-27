@@ -1,3 +1,10 @@
+let latestData = {
+  message: "",
+  title: "",
+  url: "",
+  fileType: ""
+};
+
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
     return {
@@ -8,14 +15,13 @@ exports.handler = async (event, context) => {
 
   const { message, title, url, fileType } = JSON.parse(event.body);
 
-  const latestData = {
+  // Update the latest data with the incoming data
+  latestData = {
     message,
     title,
     url,
     fileType,
   };
-
-  console.log(latestData);
 
   return {
     statusCode: 200,
