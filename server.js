@@ -11,8 +11,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 let latestData = null;
 
+// Route to handle incoming data updates
 app.post('/api/update-data', (req, res) => {
-  // Extract the data from the request body
   const { message, title, url, fileType } = req.body;
 
   // Update the latestData object with the received data
@@ -23,14 +23,16 @@ app.post('/api/update-data', (req, res) => {
     fileType
   };
 
-  // Send a response back to Make.com indicating success
+  // Send a success response
   res.status(200).json({ success: true });
 });
 
+// Route to get the latest data
 app.get('/api/latest', (req, res) => {
-  res.json(latestData);
+  res.json(latestData || { message: 'No data available' });
 });
 
+// Start the server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
