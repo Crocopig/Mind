@@ -1,10 +1,10 @@
 exports.handler = async (event, context) => {
-  // Initial empty state
+  // Example static data for testing
   const latestData = {
-    message: "",
-    title: "",
-    url: "",
-    fileType: ""
+    message: "Test message for debugging.",
+    title: "Test Title",
+    url: "https://www.example.com",
+    fileType: "PDF"
   };
 
   return {
