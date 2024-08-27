@@ -1,10 +1,10 @@
 exports.handler = async (event, context) => {
-  // Example static data
+  // Initial empty state
   const latestData = {
-    message: "I fetched your PDF, sir.",
-    title: "Google",
-    url: "https://www.google.com",
-    fileType: "PDF"
+    message: "",
+    title: "",
+    url: "",
+    fileType: ""
   };
 
   return {
