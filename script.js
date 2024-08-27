@@ -2,8 +2,10 @@ let currentData = null;
 
 async function fetchData() {
     try {
+        console.log("Fetching data from API...");
         const response = await fetch('/api/latest');
         const data = await response.json();
+        console.log("Data received from API:", data);
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -15,10 +17,10 @@ function updateUI(data) {
     const aiMessage = document.getElementById('ai-message');
     const urlDiv = document.getElementById('url-div');
 
-    // Check if there's valid data
     if (data && data.message) {
         aiMessage.textContent = data.message;
         aiMessage.style.display = 'block';
+        console.log("Message updated in UI:", data.message);
     } else {
         aiMessage.style.display = 'none';
     }
@@ -28,6 +30,7 @@ function updateUI(data) {
         document.getElementById('url-link').textContent = data.url;
         document.getElementById('url-link').href = data.url;
         urlDiv.style.display = 'block';
+        console.log("URL div updated in UI:", data.url);
     } else {
         urlDiv.style.display = 'none';
     }
