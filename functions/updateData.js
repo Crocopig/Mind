@@ -1,10 +1,4 @@
-let latestData = {
-  message: "",
-  title: "",
-  url: "",
-  fileType: ""
-};
-
+// Shared in-memory store
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
     return {
@@ -15,7 +9,7 @@ exports.handler = async (event, context) => {
 
   const { message, title, url, fileType } = JSON.parse(event.body);
 
-  // Update the latest data with the incoming data
+  // Update the latest data
   latestData = {
     message,
     title,
