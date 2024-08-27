@@ -42,7 +42,6 @@ async function refreshData() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    refreshData();
-    // Refresh data every 30 seconds
-    setInterval(refreshData, 30000);
+    refreshData(); // Initial fetch on page load
+    // setInterval(refreshData, 30000); // Removed to stop periodic fetching
 });
