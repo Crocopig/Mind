@@ -1,4 +1,4 @@
-// This will be used to store the most recent data
+// Simulated in-memory store (works only within the same instance)
 let latestData = {
   message: "",
   title: "",
