@@ -1,0 +1,7 @@
+[build]
+  functions = "functions"  # Directory for Netlify Functions
+
+[[redirects]]
+  from = "/api/update-data"  # The route you want to create
+  to = "/.netlify/functions/updateData"  # Redirect to the Netlify Function
+  status = 200  # HTTP status code for the redirect
