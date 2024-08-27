@@ -3,22 +3,28 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
+app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 let latestData = null;
 
-app.get('/api/data', (req, res) => {
+app.post('/api/update-data', (req, res) => {
+  // Extract the data from the request body
+  const { message, title, url, fileType } = req.body;
+
+  // Update the latestData object with the received data
   latestData = {
-    message: req.query.message || 'No message',
-    title: req.query.title || 'No title',
-    url: req.query.url || '#',
-    fileType: req.query.fileType || 'unknown'
+    message,
+    title,
+    url,
+    fileType
   };
-  res.json({ success: true });
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+
+  // Send a response back to Make.com indicating success
+  res.status(200).json({ success: true });
 });
 
 app.get('/api/latest', (req, res) => {
