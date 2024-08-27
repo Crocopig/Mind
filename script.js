@@ -1,5 +1,3 @@
-let currentData = null;
-
 async function fetchData() {
     try {
         console.log("Fetching data from API...");
@@ -43,5 +41,4 @@ async function refreshData() {
 
 document.addEventListener('DOMContentLoaded', () => {
     refreshData(); // Initial fetch on page load
-    // setInterval(refreshData, 30000); // Removed to stop periodic fetching
 });
