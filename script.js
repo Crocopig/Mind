@@ -2,8 +2,9 @@ let currentData = null;
 
 async function fetchData() {
     try {
-        const response = await fetch('https://crocomind.netlify.app/api/latest');  // Updated URL to point to your live Netlify site
+        const response = await fetch('https://crocomind.netlify.app/api/latest');  // Ensure this is correct
         const data = await response.json();
+        console.log("Fetched data:", data);  // Log fetched data
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -12,7 +13,7 @@ async function fetchData() {
 }
 
 function updateUI(data) {
-    console.log("Data received:", data);  // Added console log for debugging
+    console.log("Updating UI with data:", data);  // Log data being used to update the UI
     const aiMessage = document.getElementById('ai-message');
     const urlDiv = document.getElementById('url-div');
     const urlTitle = document.getElementById('url-title');
@@ -47,29 +48,6 @@ function getFileIconHTML(fileType) {
     }
 }
 
-function fadeOut(element) {
-    element.style.opacity = 1;
-    (function fade() {
-        if ((element.style.opacity -= .1) < 0) {
-            element.style.display = "none";
-        } else {
-            requestAnimationFrame(fade);
-        }
-    })();
-}
-
-function fadeIn(element, display) {
-    element.style.opacity = 0;
-    element.style.display = display || "block";
-    (function fade() {
-        var val = parseFloat(element.style.opacity);
-        if (!((val += .1) > 1)) {
-            element.style.opacity = val;
-            requestAnimationFrame(fade);
-        }
-    })();
-}
-
 function updateUIWithAnimation(data) {
     const aiMessage = document.getElementById('ai-message');
     const urlDiv = document.getElementById('url-div');
@@ -88,7 +66,10 @@ async function refreshData() {
     const newData = await fetchData();
     if (newData && JSON.stringify(newData) !== JSON.stringify(currentData)) {
         currentData = newData;
+        console.log("New data detected, updating UI...");
         updateUIWithAnimation(currentData);
+    } else {
+        console.log("No new data or data unchanged");
     }
 }
 
