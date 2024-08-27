@@ -1,38 +1,26 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
+exports.handler = async (event, context) => {
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      body: 'Method Not Allowed',
+    };
+  }
 
-const app = express();
-const port = process.env.PORT || 3000;
+  const { message, title, url, fileType } = JSON.parse(event.body);
 
-app.use(cors());
-app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
-
-let latestData = null;
-
-// Route to handle incoming data updates
-app.post('/api/update-data', (req, res) => {
-  const { message, title, url, fileType } = req.body;
-
-  // Update the latestData object with the received data
-  latestData = {
+  // Here you would normally save the data to a database or some other storage.
+  // For this example, we'll just log it and return it back in the response.
+  const latestData = {
     message,
     title,
     url,
-    fileType
+    fileType,
   };
 
-  // Send a success response
-  res.status(200).json({ success: true });
-});
+  console.log(latestData);
 
-// Route to get the latest data
-app.get('/api/latest', (req, res) => {
-  res.json(latestData || { message: 'No data available' });
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ success: true, data: latestData }),
+  };
+};
