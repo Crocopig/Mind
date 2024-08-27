@@ -1,4 +1,3 @@
-// This will store the latest data temporarily (use persistent storage in production)
 let latestData = {
     message: "",
     title: "",
@@ -16,6 +15,9 @@ exports.handler = async (event, context) => {
 
     // Parse the JSON body of the request
     const { message, title, url, fileType } = JSON.parse(event.body);
+
+    // Log the data to see if it was received correctly
+    console.log("Data received:", { message, title, url, fileType });
 
     // Update the latestData object with the new values
     latestData = {
