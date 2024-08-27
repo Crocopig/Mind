@@ -1,0 +1,64 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #010023;
+    color: white;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+#ai-avatar {
+    width: 48px;
+    height: 48px;
+    background-color: #3b82f6;
+    border-radius: 50%;
+    margin: 24px 0;
+    box-shadow: 0px 0px 24px 2px rgb(50, 107, 206);
+}
+
+#ai-message {
+    margin: 20px 0;
+    font-size: 14px;
+    margin: 0 0 60px 0;
+}
+
+#url-div {
+    width: 300px;
+    height: 60px;
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    border: 2px solid white;
+    overflow: hidden;
+    display: flex;
+    text-decoration: none;
+}
+
+#file-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #2563eb;
+}
+
+.url-content {
+    padding: 10px;
+}
+
+#url-title {
+    margin: 0;
+    font-size: 14px;
+}
+
+#url-link {
+    font-size: 11px;
+    color: #3b82f6;
+}
