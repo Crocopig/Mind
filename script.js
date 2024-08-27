@@ -2,16 +2,17 @@ let currentData = null;
 
 async function fetchData() {
     try {
-      const response = await fetch('http://localhost:3000/api/latest');
-      const data = await response.json();
-      return data;
+        const response = await fetch('https://crocomind.netlify.app/api/latest');  // Updated URL to point to your live Netlify site
+        const data = await response.json();
+        return data;
     } catch (error) {
-      console.error('Error fetching data:', error);
-      return null;
+        console.error('Error fetching data:', error);
+        return null;
     }
-  }
+}
 
 function updateUI(data) {
+    console.log("Data received:", data);  // Added console log for debugging
     const aiMessage = document.getElementById('ai-message');
     const urlDiv = document.getElementById('url-div');
     const urlTitle = document.getElementById('url-title');
