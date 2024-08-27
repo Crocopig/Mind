@@ -14,9 +14,8 @@ async function fetchData() {
 function updateUI(data) {
     const aiMessage = document.getElementById('ai-message');
     const urlDiv = document.getElementById('url-div');
-    const urlTitle = document.getElementById('url-title');
-    const urlLink = document.getElementById('url-link');
 
+    // Check if there's valid data
     if (data && data.message) {
         aiMessage.textContent = data.message;
         aiMessage.style.display = 'block';
@@ -25,9 +24,9 @@ function updateUI(data) {
     }
 
     if (data && data.url && data.title) {
-        urlTitle.textContent = data.title;
-        urlLink.textContent = data.url;
-        urlLink.href = data.url;
+        document.getElementById('url-title').textContent = data.title;
+        document.getElementById('url-link').textContent = data.url;
+        document.getElementById('url-link').href = data.url;
         urlDiv.style.display = 'block';
     } else {
         urlDiv.style.display = 'none';
