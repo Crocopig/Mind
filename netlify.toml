@@ -2,6 +2,11 @@
   functions = "functions"  # Directory for Netlify Functions
 
 [[redirects]]
-  from = "/api/latest"  # Redirect for the API endpoint
-  to = "/.netlify/functions/latest"  # Redirect to the Netlify Function
+  from = "/api/latest"  # Redirect for the latest data API endpoint
+  to = "/.netlify/functions/latest"  # Redirect to the Netlify Function handling the latest data
+  status = 200
+
+[[redirects]]
+  from = "/api/update-data"  # Redirect for the update data API endpoint
+  to = "/.netlify/functions/updateData"  # Redirect to the Netlify Function handling data updates
   status = 200
