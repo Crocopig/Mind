@@ -12,6 +12,18 @@ async function fetchData() {
     }
 }
 
+function resetUI() {
+    const aiMessage = document.getElementById('ai-message');
+    const urlTitle = document.getElementById('url-title');
+    const urlLink = document.getElementById('url-link');
+    const fileIcon = document.getElementById('file-icon');
+
+    aiMessage.textContent = "Loading...";
+    urlTitle.textContent = "";
+    urlLink.textContent = "";
+    fileIcon.innerHTML = "";
+}
+
 function updateUI(data) {
     console.log("Updating UI with data:", data);  // Log data being used to update the UI
     const aiMessage = document.getElementById('ai-message');
@@ -86,14 +98,11 @@ function updateUIWithAnimation(data) {
 }
 
 async function refreshData() {
+    resetUI();  // Clear UI before fetching new data
     const newData = await fetchData();
-    if (newData && JSON.stringify(newData) !== JSON.stringify(currentData)) {
-        currentData = newData;
-        console.log("New data detected, updating UI...");
-        updateUIWithAnimation(currentData);
-    } else {
-        console.log("No new data or data unchanged");
-    }
+    currentData = newData;
+    console.log("New data detected, updating UI...");
+    updateUIWithAnimation(currentData);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
